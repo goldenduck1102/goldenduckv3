@@ -1,6 +1,6 @@
 # ATOTC V3 — SignalFest UI
 
-GitHub: https://github.com/goldenduck1102/goldenduckv3
+GitHub: https://github.com/goldenduck1102/ttc2026v3
 
 Rebuilt section order, composition, layered imagery and scroll behavior from https://signalfest.framer.website/, using Content V1 and OrcheStars assets.
 
@@ -30,12 +30,12 @@ Latest review changes: `docs/BROWSER-COMMENTS-20261030.md`. Temporary logo prove
 Workflow: `.github/workflows/pages.yml`, xuất bản sau mỗi lần push vào `main` hoặc chạy thủ công.
 Trong Settings → Pages, chọn Source: GitHub Actions. Tài khoản phải hỗ trợ Pages cho visibility của repository.
 
-Đường dẫn dự kiến sau khi bật Pages và deploy thành công: https://goldenduck1102.github.io/goldenduckv3/
+Đường dẫn dự kiến sau khi bật Pages và deploy thành công: https://goldenduck1102.github.io/ttc2026v3/
 
 Build mô phỏng Pages từ máy local:
 
 ```sh
-GITHUB_REPOSITORY=goldenduck1102/goldenduckv3 pnpm build
+GITHUB_REPOSITORY=goldenduck1102/ttc2026v3 pnpm build
 ```
 
 `pnpm dev` và `pnpm build` không có biến trên vẫn dùng đường dẫn gốc `/`.
