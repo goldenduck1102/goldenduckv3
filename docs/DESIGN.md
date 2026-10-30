@@ -1,7 +1,7 @@
 # V3 — SignalFest section and layer reconstruction
 
 Reference inspected 30/10/2026: https://signalfest.framer.website/.
-This revision replaces the earlier loose visual adaptation.
+Latest revision includes the browser-comment overrides in BROWSER-COMMENTS-20261030.md; these take precedence over the original reference mapping below.
 
 | Reference | ATOTC V3 |
 | --- | --- |

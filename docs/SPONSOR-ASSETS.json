@@ -1,0 +1,49 @@
+{
+  "source_page": "https://www.orchestars.vn/",
+  "source_section": "Nhà Tài Trợ Và Đối Tác",
+  "usage": "Temporary logos requested by user for local V3; not an independent confirmation of TTC2026 sponsorship.",
+  "assets": [
+    {
+      "file": "/assets/sponsors/ho-guom-opera.png",
+      "alt": "Nhà hát Hồ Gươm",
+      "width": 599,
+      "height": 600,
+      "source_url": "https://96gwmt9ymticran5.public.blob.vercel-storage.com/image%203-1.png"
+    },
+    {
+      "file": "/assets/sponsors/pv-gas.png",
+      "alt": "PV GAS",
+      "width": 600,
+      "height": 600,
+      "source_url": "https://96gwmt9ymticran5.public.blob.vercel-storage.com/logo_petrovietnampvgas-1.png"
+    },
+    {
+      "file": "/assets/sponsors/impressivo.png",
+      "alt": "Impressivo",
+      "width": 2000,
+      "height": 2000,
+      "source_url": "https://96gwmt9ymticran5.public.blob.vercel-storage.com/Frame%205131596.png"
+    },
+    {
+      "file": "/assets/sponsors/coderpush.png",
+      "alt": "CoderPush",
+      "width": 604,
+      "height": 604,
+      "source_url": "https://96gwmt9ymticran5.public.blob.vercel-storage.com/Coderpush-1.png"
+    },
+    {
+      "file": "/assets/sponsors/nanohome.png",
+      "alt": "nanoHome",
+      "width": 604,
+      "height": 604,
+      "source_url": "https://96gwmt9ymticran5.public.blob.vercel-storage.com/nanohome_logo.png"
+    },
+    {
+      "file": "/assets/sponsors/nanoco.png",
+      "alt": "NANOCO",
+      "width": 604,
+      "height": 604,
+      "source_url": "https://96gwmt9ymticran5.public.blob.vercel-storage.com/nanoco_logo.png"
+    }
+  ]
+}

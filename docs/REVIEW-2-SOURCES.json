@@ -1,0 +1,19 @@
+{
+  "fonts": {
+    "decorative": "https://fonts.google.com/specimen/Cinzel+Decorative",
+    "italic": "https://fonts.google.com/specimen/Cormorant+Garamond",
+    "note": "Stylistic approximation to the raster banner lettering, not an exact identification."
+  },
+  "photo": {
+    "original": "/Users/hoangbun/Downloads/OrcheStars Christmas 2025 - Social Proof/NHQ05318.JPG",
+    "web_derivative": "/assets/christmas-2025/christmas-2025-01-large.webp"
+  },
+  "video": {
+    "url": "https://www.youtube.com/watch?v=xjurXfEvVxs",
+    "channel": "https://www.youtube.com/@orchestars_vn",
+    "title": "[OrcheStars] Những thước phim đáng nhớ tại 2 đêm concert Once Upon A Time",
+    "published": "2025-09-12",
+    "source_description": "Concert Once Upon A Time - July 19th&20th 2024 in Ho Chi Minh City",
+    "note": "Upload year verified as 2025; source description says performance 2024. UI states upload date only; user clarification requested for a performance specifically recorded in 2025."
+  }
+}

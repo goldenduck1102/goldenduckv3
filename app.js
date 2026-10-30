@@ -53,7 +53,7 @@
       activeIndex = (index + items.length) % items.length;
       const item = items[activeIndex];
       picture.hidden = false;
-      picture.alt = item.dataset.galleryAlt || 'Khoảnh khắc cùng Orchestars';
+      picture.alt = item.dataset.galleryAlt || 'Khoảnh khắc cùng OrcheStars';
       picture.src = item.dataset.gallerySrc;
       if (caption) caption.textContent = (item.dataset.galleryCaption || picture.alt) + (item.dataset.gallerySrc.endsWith('.svg') && window.innerWidth < 768 ? '. Vuốt ngang trên sơ đồ để xem toàn bộ.' : '');
       if (previous) previous.disabled = items.length < 2;
@@ -131,104 +131,190 @@ const clamp = (value, low=0, high=1) => Math.min(high, Math.max(low, value));
 
 function initializeBelt() {
   const belt = document.querySelector('.belt');
-  const cards = [...belt.querySelectorAll('.belt-card')];
-  let active = 2, drag = 0, startX = null, dragged = false, visible = false, paused = false;
+  const track = belt.querySelector('.belt-track');
+  const originals = [...track.querySelectorAll('.belt-card')];
+  const count = originals.length;
+  // Three linear copies provide an off-screen buffer at both ends.
+  // No visible card is ever moved across the belt to wrap around.
+  const cards = [];
+  for (let copy = 0; copy < 3; copy++) {
+    originals.forEach((original, index) => {
+      const card = copy === 0 ? original : original.cloneNode(true);
+      if (copy) track.append(card);
+      card.dataset.beltItem = String(index);
+      card.dataset.beltCopy = String(copy);
+      card.querySelector('img').draggable = false;
+      cards.push(card);
+    });
+  }
+  let position = count + 2, drag = 0, startX = null, dragged = false;
+  let visible = false, moving = false, settleTimer, autoplayTimer;
   belt.tabIndex = 0;
-  cards.forEach(card => card.querySelector('img').draggable = false);
-  function render() {
-    const step = window.innerWidth < 768 ? 230 : 300;
-    cards.forEach((card, i) => {
-      let offset = ((i - active + cards.length * 1.5) % cards.length) - cards.length / 2;
-      offset += drag / step;
+  function render(animate = true) {
+    const phone = window.innerWidth < 768;
+    const step = phone ? 230 : 300;
+    cards.forEach((card, index) => {
+      const offset = index - position + drag / step;
       const distance = Math.abs(offset);
       const scale = 1.15 - Math.min(distance, 3) * .15;
-      const rotate = clamp(-offset * 24, -42, 42);
-      card.style.transform = `translate3d(${offset * step}px,${distance * 17}px,${-distance * 30}px) rotateY(${rotate}deg) scale(${scale})`;
-      const w=window.innerWidth<768?220:280,h=window.innerWidth<768?355:455;
-      card.style.clipPath=`path('M0 14 Q${w/2} -14 ${w} 14 L${w} ${h-14} Q${w/2} ${h+14} 0 ${h-14} Z')`;
+      card.style.transition = animate && !reducedMotion.matches ? '' : 'none';
+      card.style.transform = `translate3d(${offset * step}px,${distance * 17}px,${-distance * 30}px) rotateY(${clamp(-offset * 24, -42, 42)}deg) scale(${scale})`;
+      const w = phone ? 220 : 280, h = phone ? 355 : 455;
+      card.style.clipPath = `path('M0 14 Q${w/2} -14 ${w} 14 L${w} ${h-14} Q${w/2} ${h+14} 0 ${h-14} Z')`;
       card.style.zIndex = String(20 - Math.round(distance * 4));
-      card.style.opacity = distance > 3.2 ? '0' : '1';
+      card.style.opacity = distance > 3.5 ? '0' : '1';
+      card.setAttribute('aria-hidden', String(distance > 3.5));
       card.tabIndex = distance <= 1.1 ? 0 : -1;
     });
   }
-  function advance(step) { active = (active + step + cards.length) % cards.length; drag = 0; render(); }
-  document.querySelectorAll('[data-belt]').forEach(button => button.addEventListener('click', () => advance(Number(button.dataset.belt))));
+  function normalize() {
+    const next = count + ((position - count) % count + count) % count;
+    if (next !== position) {
+      position = next;
+      render(false);
+      // Commit the visually identical copy before transitions resume.
+      track.getBoundingClientRect();
+    }
+    moving = false;
+  }
+  function settle() {
+    clearTimeout(settleTimer);
+    if (reducedMotion.matches) {normalize(); return;}
+    settleTimer = setTimeout(normalize, 820);
+  }
+  function advance(step) {
+    if (moving) return;
+    moving = true; position += step; drag = 0; render(); settle();
+  }
+  function restartAutoplay() {
+    clearInterval(autoplayTimer);
+    if (!visible || document.hidden || reducedMotion.matches) return;
+    autoplayTimer = setInterval(() => {
+      if (startX === null) advance(1);
+    }, 4000);
+  }
+  document.querySelectorAll('[data-belt]').forEach(button => button.addEventListener('click', () => {advance(Number(button.dataset.belt));restartAutoplay();}));
   belt.addEventListener('keydown', event => {
-    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {event.preventDefault();advance(event.key === 'ArrowRight' ? 1 : -1);}
+    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+      event.preventDefault(); advance(event.key === 'ArrowRight' ? 1 : -1);restartAutoplay();
+    }
   });
-  belt.addEventListener('pointerdown', event => {startX = event.clientX;dragged = false;paused = true;});
+  belt.addEventListener('pointerdown', event => {
+    if (moving) return;
+    startX = event.clientX; dragged = false;clearInterval(autoplayTimer);
+  });
   belt.addEventListener('pointermove', event => {
     if (startX === null) return;
     drag = event.clientX - startX;
-    if (Math.abs(drag) > 8) {dragged = true;belt.classList.add('is-dragging');if (!belt.hasPointerCapture(event.pointerId)) belt.setPointerCapture(event.pointerId);render();}
+    if (Math.abs(drag) > 8) {
+      dragged = true; belt.classList.add('is-dragging');
+      if (!belt.hasPointerCapture(event.pointerId)) belt.setPointerCapture(event.pointerId);
+      render(false);
+    }
   });
   function endDrag() {
     if (startX === null) return;
     const step = window.innerWidth < 768 ? 230 : 300;
-    if (dragged) active = (active - Math.round(drag / step) + cards.length * 100) % cards.length;
-    startX = null;drag=0;belt.classList.remove('is-dragging');render();paused=false;
+    if (dragged) position -= Math.round(drag / step);
+    startX = null; drag = 0; belt.classList.remove('is-dragging');
+    if (dragged) {moving = true; render(); settle();}
+    restartAutoplay();
   }
-  belt.addEventListener('pointerup', endDrag);belt.addEventListener('pointercancel', endDrag);
-  belt.addEventListener('click', event => {if(dragged){event.preventDefault();dragged=false;}},true);
+  belt.addEventListener('pointerup', endDrag);
+  belt.addEventListener('pointercancel', endDrag);
+  belt.addEventListener('click', event => { if (dragged) {event.preventDefault(); dragged = false;} }, true);
   belt.addEventListener('dragstart', event => event.preventDefault());
-  belt.addEventListener('mouseenter',()=>paused=true);belt.addEventListener('mouseleave',()=>paused=false);
-  belt.addEventListener('focusin',()=>paused=true);belt.addEventListener('focusout',()=>paused=false);
-  new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;},{threshold:.2}).observe(belt);
-  setInterval(()=>{if(visible&&!paused&&!document.hidden&&!reducedMotion.matches)advance(1);},4200);
-  window.addEventListener('resize',render);render();
+  new IntersectionObserver(entries => {
+    const next=entries[0].isIntersecting;
+    if(next!==visible){visible=next;restartAutoplay();}
+  }, {threshold: .2}).observe(belt);
+  document.addEventListener('visibilitychange',restartAutoplay);
+  reducedMotion.addEventListener('change',restartAutoplay);
+  window.addEventListener('resize', () => render(false));
+  render(false);
 }
 
 function initializeScrollLayers() {
   const origin=document.querySelector('.travel-origin');
   const target=document.querySelector('.photo-target');
-  const about=document.querySelector('.about');
-  const experience=document.querySelector('.experience');
-  const cards=[...document.querySelectorAll('.experience-card')];
-  const visit=document.querySelector('.visit');
-  const panels=[...document.querySelectorAll('.visit-panel')];
-  const dots=[...document.querySelectorAll('[data-visit]')];
-  const traveler=document.createElement('img');
-  traveler.src=import.meta.env.BASE_URL+'assets/ttc2026-banner.webp';traveler.alt='';traveler.className='photo-traveler';traveler.setAttribute('aria-hidden','true');
+  const paragraphs=[...document.querySelectorAll('.scroll-intro')].map(paragraph=>{
+    const words=paragraph.textContent.trim().split(/\s+/).map(text=>{
+      const word=document.createElement('span');
+      word.className='intro-word';word.textContent=text;
+      return word;
+    });
+    paragraph.replaceChildren(...words.flatMap((word,i)=>i?[document.createTextNode(' '),word]:[word]));
+    paragraph.classList.add('is-scroll-reveal');
+    return {paragraph,words};
+  });
+  const traveler=document.createElement('div');
+  traveler.className='photo-traveler';
+  traveler.setAttribute('aria-hidden','true');
+  const originImage=origin.querySelector('img').cloneNode();
+  const targetImage=target.querySelector('img').cloneNode();
+  originImage.alt=targetImage.alt='';
+  originImage.loading=targetImage.loading='eager';
+  traveler.append(originImage,targetImage);
   document.body.append(traveler);
   let pending=false;
   const docTop = element => element.getBoundingClientRect().top + window.scrollY;
   function update() {
     pending=false;
-    const y=window.scrollY, vh=window.innerHeight, vw=window.innerWidth;
+    const y=window.scrollY, vw=window.innerWidth;
+    paragraphs.forEach(({paragraph,words})=>{
+      const rect=paragraph.getBoundingClientRect();
+      const progress=reducedMotion.matches?1:clamp((window.innerHeight*.85-rect.top)/(rect.height+window.innerHeight*.12));
+      words.forEach((word,i)=>word.style.opacity=String(.18+.82*clamp(progress*words.length-i)));
+    });
     if(!reducedMotion.matches) {
-      if(vw>=768) {
-      const a=origin.getBoundingClientRect(), b=target.getBoundingClientRect();
-      const end=docTop(about), progress=clamp(y/end);
-      const eased=progress*progress*(3-2*progress);
-      const interpolate=(first,last)=>first+(last-first)*eased;
-      if(progress>0.01 && progress<1) {
-        traveler.style.display='block';
-        traveler.style.width=`${interpolate(a.width,b.width)}px`;
-        traveler.style.height=`${interpolate(a.height,b.height)}px`;
-        traveler.style.transform=`translate3d(${interpolate(a.left,b.left)}px,${interpolate(a.top,b.top)}px,0)`;
-        origin.style.opacity='0';target.style.opacity='0';
-      } else {traveler.style.display='none';target.style.opacity=progress>=1?'1':'0';origin.style.opacity='1';}
-      } else {traveler.style.display='none';target.style.opacity='1';origin.style.opacity='1';}
-      const ep=clamp((y-docTop(experience))/(experience.offsetHeight-vh));
-      cards.forEach((card,i)=>{
-        if(vw<768){const offset=i-ep*2;card.style.transform=`translate3d(${offset*vw*.82}px,${Math.abs(offset)*18}px,0) rotate(${offset*7}deg)`;card.style.zIndex=String(10-Math.round(Math.abs(offset)*3));}
-        else {const spread=clamp(ep*1.5);const x=(i-1)*(80+(vw/3-80)*spread);const angle=(i-1)*(-12)*(1-spread);card.style.transform=`translate3d(${x}px,${(1-spread)*Math.abs(i-1)*20}px,0) rotate(${angle}deg)`;card.style.zIndex=String(5+i);}
-      });
-      const vp=clamp((y-docTop(visit))/(visit.offsetHeight-vh))*3;
-      panels.forEach((panel,i)=>{const weight=clamp(1-Math.abs(vp-i));panel.style.opacity=String(weight);panel.style.transform=`translateY(${(i-vp)*24}px)`;panel.style.pointerEvents=weight>.5?'auto':'none';panel.querySelector('img').style.transform=`scale(${1.08-weight*.03})`;panel.setAttribute('aria-hidden',weight>.5?'false':'true');});
-      dots.forEach((dot,i)=>{dot.classList.toggle('active',Math.round(vp)===i);dot.setAttribute('aria-pressed',String(Math.round(vp)===i));});
-    } else {traveler.style.display='none';target.style.opacity='1';origin.style.opacity='1';panels.forEach(panel=>panel.removeAttribute('aria-hidden'));}
+      if(vw>=768){
+      const from=origin.getBoundingClientRect(),to=target.getBoundingClientRect();
+      const headerHeight=document.querySelector('.site-header').offsetHeight;
+      const progress=clamp(y/Math.max(1,docTop(target)-headerHeight-32));
+      const moving=progress>0&&progress<1;
+      origin.style.opacity=moving?'0':'1';
+      target.style.opacity=progress<1?'0':'1';
+      traveler.hidden=!moving;
+      if(moving){
+        const mix=(a,b)=>a+(b-a)*progress;
+        traveler.style.width=`${mix(from.width,to.width)}px`;
+        traveler.style.height=`${mix(from.height,to.height)}px`;
+        traveler.style.transform=`translate3d(${mix(from.left,to.left)}px,${mix(from.top,to.top)}px,0) rotate(${-5*(1-progress)}deg)`;
+        targetImage.style.opacity=String(clamp((progress-.25)/.5));
+      }
+      }else{traveler.hidden=true;origin.style.opacity='1';target.style.opacity='1';}
+    } else {traveler.hidden=true;origin.style.opacity='1';target.style.opacity='1';}
   }
   function requestUpdate(){if(!pending){pending=true;requestAnimationFrame(update);}}
   window.addEventListener('scroll',requestUpdate,{passive:true});window.addEventListener('resize',requestUpdate);reducedMotion.addEventListener('change',requestUpdate);
-  dots.forEach(dot=>dot.addEventListener('click',()=>{const index=Number(dot.dataset.visit);window.scrollTo({top:docTop(visit)+(visit.offsetHeight-innerHeight)*index/3,behavior:reducedMotion.matches?'instant':'smooth'});}));
   update();
 }
 
-function initializeMoreGallery() {
- const button=document.getElementById('gallery-toggle'), gallery=document.getElementById('christmas-gallery');
- button.addEventListener('click',()=>{const open=button.getAttribute('aria-expanded')!=='true';button.setAttribute('aria-expanded',String(open));gallery.hidden=!open;button.textContent=open?'Thu gọn khoảnh khắc ↑':'Xem đủ 17 khoảnh khắc ↗';});
-}
+  function initializeMasonry() {
+    const grid = document.getElementById('christmas-gallery');
+    if (!grid) return;
+    grid.classList.add('is-masonry');
+    function layout() {
+      const style = getComputedStyle(grid);
+      const row = parseFloat(style.gridAutoRows);
+      const gap = parseFloat(style.rowGap);
+      grid.querySelectorAll('.gallery-item').forEach(item => {
+        if (item.hidden) return;
+        const img = item.querySelector('img');
+        const height = item.getBoundingClientRect().width * Number(img.getAttribute('height')) / Number(img.getAttribute('width'));
+        item.style.gridRowEnd = `span ${Math.ceil((height + gap) / (row + gap))}`;
+      });
+    }
+    let previousWidth = -1;
+    new ResizeObserver(entries => {
+      const width = entries[0].contentRect.width;
+      if (width !== previousWidth) { previousWidth = width; layout(); }
+    }).observe(grid);
+    grid.addEventListener('gallery:layout', layout);
+    layout();
+  }
+
+
 const eventStart=new Date('2026-12-19T18:00:00+07:00').getTime();
-function updateCountdown(){const remaining=Math.max(0,eventStart-Date.now()),s=Math.floor(remaining/1000),p={days:Math.floor(s/86400),hours:Math.floor(s/3600)%24,minutes:Math.floor(s/60)%60,seconds:s%60};for(const [part,value]of Object.entries(p))document.getElementById(`count-${part}`).textContent=String(value).padStart(2,'0');document.getElementById('hero-countdown').textContent=`${p.days}d ${String(p.hours).padStart(2,'0')}h ${String(p.minutes).padStart(2,'0')}m`;if(!remaining)document.getElementById('countdown-status').textContent='Đã đến ngày hẹn Giáng Sinh. Xem lịch diễn trên OrcheStars.';}
-initializeBelt();initializeScrollLayers();initializeMoreGallery();updateCountdown();setInterval(updateCountdown,1000);
+function updateCountdown(){const remaining=Math.max(0,eventStart-Date.now()),s=Math.floor(remaining/1000),p={days:Math.floor(s/86400),hours:Math.floor(s/3600)%24,minutes:Math.floor(s/60)%60,seconds:s%60};for(const [part,value]of Object.entries(p))document.getElementById(`count-${part}`).textContent=String(value).padStart(2,'0');document.getElementById('hero-countdown').textContent=`${p.days} ngày ${String(p.hours).padStart(2,'0')} giờ ${String(p.minutes).padStart(2,'0')} phút`;if(!remaining)document.getElementById('countdown-status').textContent='Đã đến ngày biểu diễn. Xem lịch và thông tin suất diễn trên OrcheStars.';}
+initializeBelt();initializeScrollLayers();initializeMasonry();updateCountdown();setInterval(updateCountdown,1000);
