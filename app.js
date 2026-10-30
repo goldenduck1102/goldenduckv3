@@ -188,7 +188,7 @@ function initializeScrollLayers() {
   const panels=[...document.querySelectorAll('.visit-panel')];
   const dots=[...document.querySelectorAll('[data-visit]')];
   const traveler=document.createElement('img');
-  traveler.src='/assets/ttc2026-banner.webp';traveler.alt='';traveler.className='photo-traveler';traveler.setAttribute('aria-hidden','true');
+  traveler.src=import.meta.env.BASE_URL+'assets/ttc2026-banner.webp';traveler.alt='';traveler.className='photo-traveler';traveler.setAttribute('aria-hidden','true');
   document.body.append(traveler);
   let pending=false;
   const docTop = element => element.getBoundingClientRect().top + window.scrollY;
