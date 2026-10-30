@@ -1,0 +1,322 @@
+{
+  "retrieved": "2026-10-29",
+  "source_event_url": "https://staging.orchestars.vn/events/ttc2026",
+  "archive_source_url": "https://www.orchestars.vn/a-tale-of-two-christmas",
+  "assets": [
+    {
+      "file": "dist/assets/ttc2026-banner.webp",
+      "source_url": "https://96gwmt9ymticran5.public.blob.vercel-storage.com/bannerttc2026-4-shows-v2.png",
+      "source_file": "ttc2026-banner.png",
+      "width": 1672,
+      "height": 941,
+      "bytes": 442224,
+      "optimization": "WebP quality 90, original dimensions, no crop or artwork changes",
+      "provenance": "Official TTC2026 artwork"
+    },
+    {
+      "file": "dist/assets/ttc2026-poster.webp",
+      "source_url": "https://96gwmt9ymticran5.public.blob.vercel-storage.com/posterttc2026-4-shows-v2.png",
+      "source_file": "ttc2026-poster.png",
+      "width": 1086,
+      "height": 1448,
+      "bytes": 495566,
+      "optimization": "WebP quality 90, original dimensions, no crop or artwork changes",
+      "provenance": "Official TTC2026 artwork"
+    },
+    {
+      "file": "dist/assets/orchestra.webp",
+      "source_url": "https://www.orchestars.vn/api/media/file/landing-artists-orchestra.png",
+      "source_file": "orchestra-2025.png",
+      "width": 647,
+      "height": 270,
+      "bytes": 57852,
+      "optimization": "WebP quality 90, original dimensions, no crop or artwork changes",
+      "provenance": "Archive photograph published on official TTC2025 landing page; before 2026. Exact event and capture date are not established. Use generic archive/gallery caption, not TTC2026."
+    },
+    {
+      "file": "dist/assets/memory-01.webp",
+      "source_url": "https://www.orchestars.vn/api/media/file/atotc-moments-1.png",
+      "source_file": "recap-2025-01.png",
+      "width": 384,
+      "height": 250,
+      "bytes": 27108,
+      "optimization": "WebP quality 90, original dimensions, no crop or artwork changes",
+      "provenance": "Archive photograph published on official TTC2025 landing page; before 2026. Exact event and capture date are not established. Use generic archive/gallery caption, not TTC2026."
+    },
+    {
+      "file": "dist/assets/memory-02.webp",
+      "source_url": "https://www.orchestars.vn/api/media/file/atotc-moments-2.png",
+      "source_file": "recap-2025-02.png",
+      "width": 384,
+      "height": 250,
+      "bytes": 40876,
+      "optimization": "WebP quality 90, original dimensions, no crop or artwork changes",
+      "provenance": "Archive photograph published on official TTC2025 landing page; before 2026. Exact event and capture date are not established. Use generic archive/gallery caption, not TTC2026."
+    },
+    {
+      "file": "dist/assets/memory-03.webp",
+      "source_url": "https://www.orchestars.vn/api/media/file/atotc-moments-3.png",
+      "source_file": "recap-2025-03.png",
+      "width": 384,
+      "height": 250,
+      "bytes": 47922,
+      "optimization": "WebP quality 90, original dimensions, no crop or artwork changes",
+      "provenance": "Archive photograph published on official TTC2025 landing page; before 2026. Exact event and capture date are not established. Use generic archive/gallery caption, not TTC2026."
+    },
+    {
+      "file": "dist/assets/memory-04.webp",
+      "source_url": "https://www.orchestars.vn/api/media/file/atotc-moments-4.png",
+      "source_file": "recap-2025-04.png",
+      "width": 384,
+      "height": 250,
+      "bytes": 26826,
+      "optimization": "WebP quality 90, original dimensions, no crop or artwork changes",
+      "provenance": "Archive photograph published on official TTC2025 landing page; before 2026. Exact event and capture date are not established. Use generic archive/gallery caption, not TTC2026."
+    },
+    {
+      "file": "dist/assets/memory-05.webp",
+      "source_url": "https://www.orchestars.vn/api/media/file/atotc-moments-5.png",
+      "source_file": "recap-2025-05.png",
+      "width": 384,
+      "height": 250,
+      "bytes": 21472,
+      "optimization": "WebP quality 90, original dimensions, no crop or artwork changes",
+      "provenance": "Archive photograph published on official TTC2025 landing page; before 2026. Exact event and capture date are not established. Use generic archive/gallery caption, not TTC2026."
+    },
+    {
+      "file": "dist/assets/memory-06.webp",
+      "source_url": "https://www.orchestars.vn/api/media/file/atotc-moments-6.png",
+      "source_file": "recap-2025-06.png",
+      "width": 384,
+      "height": 250,
+      "bytes": 32946,
+      "optimization": "WebP quality 90, original dimensions, no crop or artwork changes",
+      "provenance": "Archive photograph published on official TTC2025 landing page; before 2026. Exact event and capture date are not established. Use generic archive/gallery caption, not TTC2026."
+    },
+    {
+      "file": "dist/assets/memory-07.webp",
+      "source_url": "https://www.orchestars.vn/api/media/file/atotc-moments-7.png",
+      "source_file": "recap-2025-07.png",
+      "width": 384,
+      "height": 250,
+      "bytes": 26558,
+      "optimization": "WebP quality 90, original dimensions, no crop or artwork changes",
+      "provenance": "Archive photograph published on official TTC2025 landing page; before 2026. Exact event and capture date are not established. Use generic archive/gallery caption, not TTC2026."
+    },
+    {
+      "file": "dist/assets/memory-08.webp",
+      "source_url": "https://www.orchestars.vn/api/media/file/atotc-moments-8.png",
+      "source_file": "recap-2025-08.png",
+      "width": 384,
+      "height": 250,
+      "bytes": 32240,
+      "optimization": "WebP quality 90, original dimensions, no crop or artwork changes",
+      "provenance": "Archive photograph published on official TTC2025 landing page; before 2026. Exact event and capture date are not established. Use generic archive/gallery caption, not TTC2026."
+    },
+    {
+      "file": "dist/assets/memory-09.webp",
+      "source_url": "https://www.orchestars.vn/api/media/file/atotc-moments-9.png",
+      "source_file": "recap-2025-09.png",
+      "width": 384,
+      "height": 250,
+      "bytes": 19838,
+      "optimization": "WebP quality 90, original dimensions, no crop or artwork changes",
+      "provenance": "Archive photograph published on official TTC2025 landing page; before 2026. Exact event and capture date are not established. Use generic archive/gallery caption, not TTC2026."
+    },
+    {
+      "file": "dist/assets/memory-10.webp",
+      "source_url": "https://www.orchestars.vn/api/media/file/atotc-moments-10.png",
+      "source_file": "recap-2025-10.png",
+      "width": 384,
+      "height": 250,
+      "bytes": 26466,
+      "optimization": "WebP quality 90, original dimensions, no crop or artwork changes",
+      "provenance": "Archive photograph published on official TTC2025 landing page; before 2026. Exact event and capture date are not established. Use generic archive/gallery caption, not TTC2026."
+    },
+    {
+      "file": "dist/assets/logo-dark.svg",
+      "source_url": "https://staging.orchestars.vn/site-v2/assets/orchestars-logo1.svg",
+      "source_file": "orchestars-logo.svg",
+      "bytes": 6204,
+      "optimization": "Unmodified SVG copy",
+      "provenance": "Official OrcheStars brand logo from staging page"
+    },
+    {
+      "file": "dist/assets/logo-light.svg",
+      "source_url": "https://staging.orchestars.vn/site-v2/assets/orchestars-logo2.svg",
+      "source_file": "orchestars-logo-footer.svg",
+      "bytes": 6222,
+      "optimization": "Unmodified SVG copy",
+      "provenance": "Official OrcheStars brand logo from staging page"
+    },
+    {
+      "file": "public/assets/seating-map.svg",
+      "source_url": "https://staging.orchestars.vn/events/ttc2026/6ad9d5b53fda5c000821ff8f/select-ticket",
+      "provenance": "Official rendered SVG, static reference copy; no seat selection or live availability; image labels embedded."
+    },
+    {
+      "file": "public/assets/renaissance-exterior.jpg",
+      "source_url": "https://cache.marriott.com/is/image/marriotts7prod/br-sgnbr-hotel-exterior-28792:Wide-Hor?wid=1400&fit=constrain",
+      "source_page": "https://www.marriott.com/en-us/hotels/sgnbr-renaissance-riverside-hotel-saigon/photos/",
+      "provenance": "Official Marriott venue exterior photo; credited in page."
+    }
+  ],
+  "christmas_2025_gallery": {
+    "source_directory": "/Users/hoangbun/Downloads/OrcheStars Christmas 2025 - Social Proof",
+    "assets": [
+      {
+        "index": 1,
+        "source_file": "/Users/hoangbun/Downloads/OrcheStars Christmas 2025 - Social Proof/NHQ05318.JPG",
+        "thumbnail": "/assets/christmas-2025/christmas-2025-01-thumb.webp",
+        "large": "/assets/christmas-2025/christmas-2025-01-large.webp",
+        "caption": "Toàn cảnh khán phòng và sân khấu Christmas 2025",
+        "width": 720,
+        "height": 480
+      },
+      {
+        "index": 2,
+        "source_file": "/Users/hoangbun/Downloads/OrcheStars Christmas 2025 - Social Proof/HOME9325.jpg",
+        "thumbnail": "/assets/christmas-2025/christmas-2025-02-thumb.webp",
+        "large": "/assets/christmas-2025/christmas-2025-02-large.webp",
+        "caption": "Các nghệ sĩ và hợp xướng thiếu nhi trên sân khấu Christmas 2025",
+        "width": 720,
+        "height": 480
+      },
+      {
+        "index": 3,
+        "source_file": "/Users/hoangbun/Downloads/OrcheStars Christmas 2025 - Social Proof/HOME9978.jpg",
+        "thumbnail": "/assets/christmas-2025/christmas-2025-03-thumb.webp",
+        "large": "/assets/christmas-2025/christmas-2025-03-large.webp",
+        "caption": "Khán giả vỗ tay trong đêm nhạc Christmas 2025",
+        "width": 720,
+        "height": 480
+      },
+      {
+        "index": 4,
+        "source_file": "/Users/hoangbun/Downloads/OrcheStars Christmas 2025 - Social Proof/HOME9588.jpg",
+        "thumbnail": "/assets/christmas-2025/christmas-2025-04-thumb.webp",
+        "large": "/assets/christmas-2025/christmas-2025-04-large.webp",
+        "caption": "Các nghệ sĩ dàn nhạc biểu diễn tại Christmas 2025",
+        "width": 720,
+        "height": 480
+      },
+      {
+        "index": 5,
+        "source_file": "/Users/hoangbun/Downloads/OrcheStars Christmas 2025 - Social Proof/HOME9221.jpg",
+        "thumbnail": "/assets/christmas-2025/christmas-2025-05-thumb.webp",
+        "large": "/assets/christmas-2025/christmas-2025-05-large.webp",
+        "caption": "Gia đình chụp ảnh bên khu vực Giáng Sinh OrcheStars",
+        "width": 720,
+        "height": 480
+      },
+      {
+        "index": 6,
+        "source_file": "/Users/hoangbun/Downloads/OrcheStars Christmas 2025 - Social Proof/NHQ06537.JPG",
+        "thumbnail": "/assets/christmas-2025/christmas-2025-06-thumb.webp",
+        "large": "/assets/christmas-2025/christmas-2025-06-large.webp",
+        "caption": "Dàn nhạc và sân khấu đỏ rực trong Christmas 2025",
+        "width": 720,
+        "height": 480
+      },
+      {
+        "index": 7,
+        "source_file": "/Users/hoangbun/Downloads/OrcheStars Christmas 2025 - Social Proof/NHQ08106.JPG",
+        "thumbnail": "/assets/christmas-2025/christmas-2025-07-thumb.webp",
+        "large": "/assets/christmas-2025/christmas-2025-07-large.webp",
+        "caption": "Các nghệ sĩ chào khán giả tại Christmas 2025",
+        "width": 720,
+        "height": 480
+      },
+      {
+        "index": 8,
+        "source_file": "/Users/hoangbun/Downloads/OrcheStars Christmas 2025 - Social Proof/NHQ05404.JPG",
+        "thumbnail": "/assets/christmas-2025/christmas-2025-08-thumb.webp",
+        "large": "/assets/christmas-2025/christmas-2025-08-large.webp",
+        "caption": "Hợp xướng thiếu nhi biểu diễn trước khán giả",
+        "width": 720,
+        "height": 480
+      },
+      {
+        "index": 9,
+        "source_file": "/Users/hoangbun/Downloads/OrcheStars Christmas 2025 - Social Proof/NHQ06596.JPG",
+        "thumbnail": "/assets/christmas-2025/christmas-2025-09-thumb.webp",
+        "large": "/assets/christmas-2025/christmas-2025-09-large.webp",
+        "caption": "Dàn nhạc dưới ánh đèn sân khấu Christmas 2025",
+        "width": 720,
+        "height": 480
+      },
+      {
+        "index": 10,
+        "source_file": "/Users/hoangbun/Downloads/OrcheStars Christmas 2025 - Social Proof/HOME0199.jpg",
+        "thumbnail": "/assets/christmas-2025/christmas-2025-10-thumb.webp",
+        "large": "/assets/christmas-2025/christmas-2025-10-large.webp",
+        "caption": "Nghệ sĩ và khán giả cùng lưu lại kỷ niệm Christmas 2025",
+        "width": 720,
+        "height": 480
+      },
+      {
+        "index": 11,
+        "source_file": "/Users/hoangbun/Downloads/OrcheStars Christmas 2025 - Social Proof/HOME9299.jpg",
+        "thumbnail": "/assets/christmas-2025/christmas-2025-11-thumb.webp",
+        "large": "/assets/christmas-2025/christmas-2025-11-large.webp",
+        "caption": "Khán giả chụp ảnh cùng nhau tại khu vực sự kiện",
+        "width": 720,
+        "height": 480
+      },
+      {
+        "index": 12,
+        "source_file": "/Users/hoangbun/Downloads/OrcheStars Christmas 2025 - Social Proof/HOME9270 (1).jpg",
+        "thumbnail": "/assets/christmas-2025/christmas-2025-12-thumb.webp",
+        "large": "/assets/christmas-2025/christmas-2025-12-large.webp",
+        "caption": "Gia đình lưu lại kỷ niệm bên phông nền Christmas 2025",
+        "width": 720,
+        "height": 480
+      },
+      {
+        "index": 13,
+        "source_file": "/Users/hoangbun/Downloads/OrcheStars Christmas 2025 - Social Proof/HOME9463.jpg",
+        "thumbnail": "/assets/christmas-2025/christmas-2025-13-thumb.webp",
+        "large": "/assets/christmas-2025/christmas-2025-13-large.webp",
+        "caption": "Nghệ sĩ biểu diễn trên sân khấu Christmas 2025",
+        "width": 480,
+        "height": 720
+      },
+      {
+        "index": 14,
+        "source_file": "/Users/hoangbun/Downloads/OrcheStars Christmas 2025 - Social Proof/HOME9833.jpg",
+        "thumbnail": "/assets/christmas-2025/christmas-2025-14-thumb.webp",
+        "large": "/assets/christmas-2025/christmas-2025-14-large.webp",
+        "caption": "Khoảnh khắc tại khu vực đón khách Christmas 2025",
+        "width": 720,
+        "height": 480
+      },
+      {
+        "index": 15,
+        "source_file": "/Users/hoangbun/Downloads/OrcheStars Christmas 2025 - Social Proof/HOME9369.jpg",
+        "thumbnail": "/assets/christmas-2025/christmas-2025-15-thumb.webp",
+        "large": "/assets/christmas-2025/christmas-2025-15-large.webp",
+        "caption": "Khán giả thưởng thức đêm nhạc từ các tầng khán phòng",
+        "width": 720,
+        "height": 480
+      },
+      {
+        "index": 16,
+        "source_file": "/Users/hoangbun/Downloads/OrcheStars Christmas 2025 - Social Proof/NHQ06612.JPG",
+        "thumbnail": "/assets/christmas-2025/christmas-2025-16-thumb.webp",
+        "large": "/assets/christmas-2025/christmas-2025-16-large.webp",
+        "caption": "Các nghệ sĩ dàn nhạc trong không gian ánh sáng ấm",
+        "width": 480,
+        "height": 720
+      },
+      {
+        "source_file": "/Users/hoangbun/Downloads/OrcheStars Christmas 2025 - Social Proof/Frame 2.jpg",
+        "thumbnail": "/assets/christmas-2025/christmas-2025-group-thumb.webp",
+        "large": "/assets/christmas-2025/christmas-2025-group-large.webp",
+        "caption": "Nghệ sĩ và khán giả cùng lưu lại kỷ niệm sau đêm nhạc Christmas 2025",
+        "width": 720,
+        "height": 405
+      }
+    ],
+    "processing": "Auto-orient; resized proportionally to 720px thumbnail / 1800px large; WebP q80/q86, metadata stripped; originals unchanged."
+  }
+}
